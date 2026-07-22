@@ -18,7 +18,7 @@ const topbarHTML = `
       <div class="dropdown">
         <button class="dropbtn">Software</button>
         <div class="dropdown-content">
-          <a href="software/gettingStarted/index.html">Getting Started</a>
+          <a href="../../software/gettingStarted/index.html">Getting Started</a>
           <a href="#">Subsystems</a>
           <a href="#">Commands</a>
         </div>

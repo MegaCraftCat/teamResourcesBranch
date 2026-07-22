@@ -1,7 +1,8 @@
 :root { /* muh variables :3 */
-  --top-bar-size: 40px;
+  --top-bar-height: 40px;
   --top-button-height: 30px;
   --border-color: rgb(148, 23, 23);
+  --border-width: 1px;
 }
 
 * {
@@ -37,17 +38,19 @@ a {
 
 #sidebar_left {
   overflow-y: auto;
-  width: 180px; /* Set a reliable width */
+  width: 180px; 
+  max-width: 15%;
   position: fixed;
   height: 1100%; 
   background: #f0f0f0;
   border-right: 1px #aaa solid;
-  top: 0; /* Positioned directly under topbar */
+  top: var(--top-bar-height); /* positioned under topbar */
   left: 0px;
-  padding: 20px 10px;
+  padding: 5px 10px;
   border-style: solid;
-  border-width: 1px;
+  border-width: var(--border-width);
   border-color: var(--border-color);
+  border-top: 0px;
 }
 
 #sidebar_left h1 {
@@ -101,7 +104,7 @@ a {
 }
 
 .main-content {
-  margin-top: var(--top-bar-size);     /* Push below topbar */
+  margin-top: var(--top-bar-height);     /* Push below topbar */
   padding: 30px;
 }
 
@@ -113,7 +116,7 @@ a {
 
 
 #topbar {
-  height: var(--top-bar-size);
+  height: var(--top-bar-height);
   background: #ddd;
   border-bottom: 1px #aaa solid;
   width: 100%;
@@ -122,7 +125,7 @@ a {
   left: 0;
   z-index: 1000;
   border-style: solid;
-  border-width: 1px;
+  border-width: var(--border-width);
   border-color: var(--border-color);
 }
 

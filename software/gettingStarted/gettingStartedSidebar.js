@@ -3,13 +3,13 @@
 const softwareGettingStartedSidebarHTML = `
   <!-- Left Sidebar -->
   <aside id="sidebar_left">
-    <h1>Pages</h1>
+    <h3>this is invisible</h3>
     <ul>
       <li>
-        <a href="https://github.com/">Learning Java</a>
+        <a href="learningJava.html">Learning Java</a>
       </li>
       <li>
-        <a href="#">Downloading WPILib</a> 
+        <a href="wpiLibSetup.html">WpiLib Setup</a> 
       </li>
     </ul>
   </aside>
