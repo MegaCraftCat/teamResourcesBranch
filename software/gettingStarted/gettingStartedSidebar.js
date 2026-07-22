@@ -3,7 +3,7 @@
 const softwareGettingStartedSidebarHTML = `
   <!-- Left Sidebar -->
   <aside id="sidebar_left">
-    <h3>this is invisible</h3>
+    <h3>Software - Getting Started</h3>
     <ul>
       <li>
         <a href="learningJava.html">Learning Java</a>

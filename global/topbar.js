@@ -4,6 +4,7 @@ const topbarHTML = `
   <div id="topbar">
     <div class="dropdown-row">
 
+
       <!-- Dropdown 1 -->
       <div class="dropdown">
         <button class="dropbtn">Home</button>
