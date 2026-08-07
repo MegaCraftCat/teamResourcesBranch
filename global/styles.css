@@ -1,8 +1,14 @@
 :root { /* muh variables :3 */
+  --maroon: maroon;
+  --gold: gold;
   --top-bar-height: 40px;
   --top-button-height: 30px;
-  --border-color: rgb(148, 23, 23);
+  --top-bar-text-color: white;
+  --sidebar-width: 180px;
+  --team-logo-height: var(--top-button-height);
+  --border-color: var(--maroon);
   --border-width: 1px;
+  --link-color: var(--maroon);
 }
 
 * {
@@ -32,14 +38,16 @@ p {
 }
 
 a {  
-  color: blue;
+  color: var(--link-color);
   /* this is the thing for links */
+}
+a:hover{
+  color: var(--gold);
 }
 
 #sidebar_left {
   overflow-y: auto;
-  width: 180px; 
-  max-width: 15%;
+  width: var(--sidebar-width);
   position: fixed;
   height: 1100%; 
   background: #f0f0f0;
@@ -54,9 +62,10 @@ a {
 }
 
 #sidebar_left h1 {
-  font-size: 1.1em;
+  font-size: 11px;
   text-align: left;
   margin-bottom: 10px;
+  color:rgb(148, 23, 23);
 }
 
 #sidebar_left ul {
@@ -79,33 +88,24 @@ a {
   text-decoration: underline;
 }
 
-#sidebar_left ul li img {
+#sidebar_left ul li img { /* if image next to link i suppose*/
   height: 16px;
-  width: 16px;
+  width: 16px; 
   margin-right: 8px;
 }
 
-@media screen and (max-width: 768px) {
-  #sidebar_left {
-    display: none;  /* Hide sidebar on small screens */
-  }
-  .main-content {
-    margin-left: 0;
-  }
+#sidebar_left img{
+  width: 90%;
+  align-self: center;
 }
 
-@media screen and (min-width: 768px) {
-  #sidebar_left {
-    display: show;
-  }
-  .main-content {
-    margin-left: 180px;  
-  }
-}
+
+
+
 
 .main-content {
   margin-top: var(--top-bar-height);     /* Push below topbar */
-  padding: 30px;
+  padding: 35px;
 }
 
 
@@ -127,23 +127,52 @@ a {
   border-style: solid;
   border-width: var(--border-width);
   border-color: var(--border-color);
+  display: flex;
 }
 
+#topbar a{
+  align-self: center;
+}
+#topbar img{
+  height: var(--team-logo-height);
+  display: flex;
+  align-self: center;
+  padding: 0px 5px;
+}
 
-.dropbtn {
-  background-color: #740707;
+.toggle-btn {
+  background-color: var(--maroon);
   color: white;
   padding: 0 16px; 
   height: var(--top-button-height);
   font-size: 14px;
   border: 2px solid gray; 
-  border-radius: 4px; /* optional: smooths corners */
+  border-radius: 4px; 
+  transform: translateX(5%); /* x position of dropdown buttons */
+  transform: translateY(10%);
+  cursor: pointer;
+  display: flex;
+  align-items: center; 
+}
+
+
+
+.dropbtn {
+  background-color: var(--maroon);
+  color: white;
+  padding: 0 16px; 
+  height: var(--top-button-height);
+  font-size: 14px;
+  border: 2px solid gray; 
+  border-radius: 4px; 
   transform: translateX(5%); /* x position of dropdown buttons */
   transform: translateY(10%);
   cursor: pointer;
   display: flex;
   align-items: center;
 }
+
+
 
 .dropdown {
   position: relative;
@@ -180,5 +209,38 @@ a {
 }
 
 .dropdown:hover .dropbtn {
-  background-color: #e4c515;
+  background-color: var(--gold);
+}
+
+.toggle-btn:hover  {
+  background-color: var(--gold);
+}
+
+@media screen and (max-width: 760px) {
+  #sidebar_left {
+    display: none; 
+  }
+  
+  .main-content {
+    margin-left: 0;
+  }
+  .toggle-btn{
+    display: block;
+  }
+
+  body.sidebar-open #sidebar_left {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 768px){
+  #sidebar_left {
+    display: block;
+  }
+  .main-content {
+    margin-left: 180px;  
+  }
+  .toggle-btn{
+    display: none;
+  }
 }
