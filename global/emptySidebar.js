@@ -4,7 +4,7 @@ const emptySidebarHTML = `
   <!-- Left Sidebar -->
   <aside id="sidebar_left">
     <a href="https://team1100.org/">
-      <img src="../../global/media/1100Logo.jpg" alt="">
+      <img src="../../global/media/1100Logo.png" alt="">
     </a>
   </aside>
 `;

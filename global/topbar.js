@@ -5,36 +5,33 @@ const topbarHTML = `
   <button class="toggle-btn" id="openBtn" aria-expanded="false">☰ Open Sidebar</button>
 
   <a href="https://team1100.org/">
-    <img src="../../global/media/1100Logo.jpg" alt="">
+    <img src="../../global/media/1100Logo.png" alt="Team 1100 Logo">
   </a>
   <div class="dropdown-row">
 
-    <!-- Dropdown 1 -->
+    <!-- Home -->
     <div class="dropdown">
       <button class="dropbtn">Home</button>
       <div class="dropdown-content">
-        <a href="index.html">What is this Website?</a>
-        <a href="#">About Team 1100</a>
-        <a href="#">How to maintain this website</a>
+        <a href="../../home/thisWebsite/index.html">What is this Website?</a>
+        <a href="#">How to maintain this website (no page)</a>
       </div>
     </div>
 
-    <!-- Dropdown 2 -->
+    <!-- Software -->
     <div class="dropdown">
       <button class="dropbtn">Software</button>
       <div class="dropdown-content">
         <a href="../../software/gettingStarted/index.html">Getting Started</a>
-        <a href="#">Subsystems</a>
-        <a href="#">Commands</a>
       </div>
     </div>
 
-    <!-- Dropdown 3 -->
+    <!-- Mechanical -->
     <div class="dropdown">
       <button class="dropbtn">Mechanical</button>
       <div class="dropdown-content">
-        <a href="#">Cad</a>
-        <a href="#">brad</a>
+        <a href="../../mechanical/cad/index.html">CAD</a>
+        <a href="#">brad (doesnt exist)</a>
       </div>
     </div>
 
@@ -46,7 +43,7 @@ const topbarHTML = `
 // Inject the navigation bar into the top of the body 
 document.body.insertAdjacentHTML('afterbegin', topbarHTML);
 
-//the sidebar button thingy
+//the sidebar button thingy that appears when screen is small 
 const toggleButton = document.getElementById('openBtn');
 
 if (toggleButton) {
