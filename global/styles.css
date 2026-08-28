@@ -2,6 +2,7 @@
   --maroon: maroon;
   --gold: gold;
   --top-bar-height: 40px;
+  --top-bar-total-height: var(--top-bar-height);
   --top-button-height: 30px;
   --top-bar-text-color: white;
   --sidebar-width: 180px;
@@ -52,7 +53,7 @@ a:hover{
   height: 1100%; 
   background: #f0f0f0;
   border-right: 1px #aaa solid;
-  top: var(--top-bar-height); /* positioned under topbar */
+  top: var(--top-bar-total-height); /* positioned under topbar */
   left: 0px;
   padding: 5px 10px;
   border-style: solid;
@@ -104,7 +105,7 @@ a:hover{
 
 
 .main-content {
-  margin-top: var(--top-bar-height);     /* Push below topbar */
+  margin-top: var(--top-bar-total-height);     /* Push below topbar */
   padding: 35px;
 }
 
@@ -116,27 +117,37 @@ a:hover{
 
 
 #topbar {
-  height: var(--top-bar-height);
-  background: #ddd;
-  border-bottom: 1px #aaa solid;
+  height: var(--top-bar-total-height);
   width: 100%;
   position: fixed; 
   top: 0;
   left: 0;
   z-index: 1000;
-  border-style: solid;
-  border-width: var(--border-width);
-  border-color: var(--border-color);
+  overflow: visible;
+}
+
+#topbar-scroll {
+  height: var(--top-bar-total-height);
+  width: 100%;
+  background: #ddd;
+  border: var(--border-width) solid var(--border-color);
   display: flex;
   align-items: center;
-  flex-wrap: nowrap; 
-  overflow-x: auto; 
-  overflow-y: hidden;
-  white-space: nowrap; 
+  flex-wrap: nowrap; /* prevent children wrapping to next row */
+  overflow-x: auto;
+  overflow-y: visible;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+#topbar-scroll::-webkit-scrollbar {
+  display: none;
 }
 
 #topbar a{
   align-self: center;
+  flex: 0 0 auto;
 }
 #topbar img{
   height: var(--team-logo-height);
@@ -144,6 +155,20 @@ a:hover{
   align-self: center;
   padding: 0px 5px;
 }
+
+/* row that contains the dropdown buttons; becomes horizontally scrollable on small widths */
+.dropdown-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+  min-width: max-content;
+  flex-wrap: nowrap; /* keep all buttons on same row */
+  padding: 0 8px;
+  white-space: nowrap;
+  margin: 0;
+}
+
 
 .toggle-btn {
   background-color: var(--maroon);
@@ -153,12 +178,11 @@ a:hover{
   font-size: 14px;
   border: 2px solid gray; 
   border-radius: 4px; 
-  transform: translateX(5%); /* x position of dropdown buttons */
+  transform: none;
+  flex: 0 0 auto;
   cursor: pointer;
   display: flex;
-  align-items: center;  
-  flex: 0 0 auto; 
-  margin-right: 10px;  /* dont know why it isnt centered without this */
+  align-items: center; 
 }
 
 
@@ -171,34 +195,37 @@ a:hover{
   font-size: 14px;
   border: 2px solid gray; 
   border-radius: 4px; 
-  transform: translateX(5%); /* x position of dropdown buttons */
-  cursor: pointer;  
+  transform: none;
+  flex: 0 0 auto;
+  white-space: nowrap;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  flex: 0 0 auto; 
-  
 }
 
 
 
 .dropdown {
   position: relative;
-  display: inline-block;
-  flex: 0 0 auto; 
+  display: inline-block; 
 }
 
+/* Render dropdown menus with fixed positioning so they can escape scroll/overflow clipping */
 .dropdown-content {
   display: none;
-  position: absolute;
-  top: 100%; 
-  left: 50%;
-  transform: translateX(-30%);  /* x position of dropdown menu relative to button */
+  position: fixed;
+  top: calc(var(--top-bar-height) - 6px);
   background-color: #f9f9f9;
   min-width: 160px;
+  max-height: calc(100vh - var(--top-bar-height) - 16px);
+  overflow-y: auto;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1001; 
+  z-index: 3000; 
   border: 1px solid #aaa;
 }
+
+/* approximate horizontal placement for each dropdown (adjust offsets to match layout) */
+
 
 .dropdown-content a {
   color: black;
