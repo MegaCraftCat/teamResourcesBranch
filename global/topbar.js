@@ -89,4 +89,4 @@ if (topbarScroll) {
   topbarScroll.addEventListener('scroll', () => {
     if (activeDropdown) positionDropdown(activeDropdown);
   });
-}
+} 
