@@ -58,10 +58,12 @@ if (toggleButton) {
 
 const topbarScroll = document.getElementById('topbar-scroll');
 let activeDropdown;
+let closeTimer;
+const dropdownMenus = new Map();
 
 function positionDropdown(dropdown) {
   const button = dropdown.querySelector('.dropbtn');
-  const menu = dropdown.querySelector('.dropdown-content');
+  const menu = dropdownMenus.get(dropdown);
 
   if (!button || !menu) return;
 
@@ -74,19 +76,64 @@ function positionDropdown(dropdown) {
   menu.style.top = `${buttonRect.bottom}px`;
 }
 
+function closeDropdown(dropdown) {
+  if (!dropdown) return;
+
+  const menu = dropdownMenus.get(dropdown);
+  if (menu) menu.style.display = '';
+  if (activeDropdown === dropdown) activeDropdown = undefined;
+}
+
+function openDropdown(dropdown) {
+  clearTimeout(closeTimer);
+
+  if (activeDropdown && activeDropdown !== dropdown) {
+    closeDropdown(activeDropdown);
+  }
+
+  activeDropdown = dropdown;
+  positionDropdown(dropdown);
+}
+
 document.querySelectorAll('.dropdown').forEach((dropdown) => {
+  const menu = dropdown.querySelector('.dropdown-content');
+  dropdownMenus.set(dropdown, menu);
+  document.body.appendChild(menu);
+
   dropdown.addEventListener('mouseenter', () => {
-    activeDropdown = dropdown;
-    positionDropdown(dropdown);
+    openDropdown(dropdown);
   });
   dropdown.addEventListener('mouseleave', () => {
-    dropdown.querySelector('.dropdown-content').style.display = '';
-    if (activeDropdown === dropdown) activeDropdown = undefined;
+    closeTimer = setTimeout(() => closeDropdown(dropdown), 150);
+  });
+  menu.addEventListener('mouseenter', () => {
+    clearTimeout(closeTimer);
+  });
+  menu.addEventListener('mouseleave', () => {
+    closeTimer = setTimeout(() => closeDropdown(dropdown), 150);
+  });
+  dropdown.querySelector('.dropbtn').addEventListener('click', (event) => {
+    event.stopPropagation();
+    if (activeDropdown === dropdown) {
+      closeDropdown(dropdown);
+    } else {
+      openDropdown(dropdown);
+    }
   });
 });
+
+document.addEventListener('click', () => closeDropdown(activeDropdown));
 
 if (topbarScroll) {
   topbarScroll.addEventListener('scroll', () => {
     if (activeDropdown) positionDropdown(activeDropdown);
   });
+<<<<<<< HEAD
+}
+
+window.addEventListener('resize', () => {
+  if (activeDropdown) positionDropdown(activeDropdown);
+});
+=======
 } 
+>>>>>>> 7bf7072087e53ab0ee1025f3608aa5db099cdc53
