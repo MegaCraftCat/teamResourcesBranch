@@ -128,8 +128,12 @@ if (topbarScroll) {
   topbarScroll.addEventListener('scroll', () => {
     if (activeDropdown) positionDropdown(activeDropdown);
   });
+<<<<<<< HEAD
 }
 
 window.addEventListener('resize', () => {
   if (activeDropdown) positionDropdown(activeDropdown);
 });
+=======
+} 
+>>>>>>> 7bf7072087e53ab0ee1025f3608aa5db099cdc53
