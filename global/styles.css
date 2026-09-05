@@ -65,7 +65,7 @@ a:hover{
 #sidebar_left h1 {
   font-size: 11px;
   text-align: left;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
   color:rgb(148, 23, 23);
 }
 
@@ -77,7 +77,56 @@ a:hover{
 #sidebar_left li {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  min-height: 20px;
+  margin-bottom: 8px;
+}
+
+#sidebar_left > ul > li {
+  display: block;
+}
+
+#sidebar_left .sidebar-pages {
+  display: block;
+  margin-top: 8px;
+  padding-left: 0;
+}
+
+#sidebar_left .sidebar-pages[hidden] {
+  display: none;
+}
+
+#sidebar_left .sidebar-pages li:last-child {
+  margin-bottom: 0;
+}
+
+#sidebar_left .sidebar-subcategory {
+  position: relative;
+  display: block;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--maroon);
+  cursor: pointer;
+  font: inherit;
+  line-height: 20px;
+  padding: 0 18px 0 0;
+  text-align: left;
+}
+
+#sidebar_left .sidebar-subcategory::after {
+  content: ">";
+  position: absolute;
+  right: 4px;
+  transition: transform 0.15s ease;
+}
+
+#sidebar_left .sidebar-subcategory[aria-expanded="true"]::after {
+  transform: rotate(90deg);
+}
+
+#sidebar_left .sidebar-subcategory:hover {
+  color: var(--gold);
+  text-decoration: underline;
 }
 
 #sidebar_left a {
@@ -221,7 +270,7 @@ a:hover{
   max-height: calc(100vh - var(--top-bar-height) - 16px);
   overflow-y: auto;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 3000; 
+  z-index: 110011001100; 
   border: 1px solid #aaa;
 }
 
@@ -279,4 +328,24 @@ a:hover{
   .toggle-btn{
     display: none;
   }
+}
+
+.topbar-link {
+  background-color: var(--maroon);
+  color: white;
+  padding: 0 16px;
+  height: var(--top-button-height);
+  font-size: 14px;
+  border: 2px solid gray;
+  border-radius: 4px;
+  flex: 0 0 auto;
+  white-space: nowrap;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.topbar-link:hover {
+  background-color: var(--gold);
+  color: white;
 }

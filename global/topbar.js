@@ -8,35 +8,11 @@ const topbarHTML = `
     <a href="https://team1100.org/">
       <img src="../../global/media/1100Logo.png" alt="Team 1100 Logo">
     </a>
-    <div class="dropdown-row">
-
-    <!-- Home -->
-    <div class="dropdown">
-      <button class="dropbtn">Home</button>
-      <div class="dropdown-content">
-        <a href="../../home/thisWebsite/index.html">What is this Website?</a>
-        <a href="#">How to maintain this website (no page)</a>
-      </div>
-    </div>
-
-    <!-- Software -->
-    <div class="dropdown">
-      <button class="dropbtn">Software</button>
-      <div class="dropdown-content">
-        <a href="../../software/gettingStarted/index.html">Getting Started</a>
-      </div>
-    </div>
-
-    <!-- Mechanical -->
-    <div class="dropdown">
-      <button class="dropbtn">Mechanical</button>
-      <div class="dropdown-content">
-        <a href="../../mechanical/cad/index.html">CAD</a>
-        <a href="#">brad (doesnt exist)</a>
-      </div>
-    </div>
-
-    </div>
+    <nav class="dropdown-row" aria-label="Categories">
+      <a class="topbar-link" href="../../home/thisWebsite/index.html">Home</a>
+      <a class="topbar-link" href="../../software/gettingStarted/index.html">Software</a>
+      <a class="topbar-link" href="../../mechanical/cad/index.html">Mechanical</a>
+    </nav>
 
   </div>
 </div>
@@ -56,82 +32,3 @@ if (toggleButton) {
   });
 }
 
-const topbarScroll = document.getElementById('topbar-scroll');
-let activeDropdown;
-let closeTimer;
-const dropdownMenus = new Map();
-
-function positionDropdown(dropdown) {
-  const button = dropdown.querySelector('.dropbtn');
-  const menu = dropdownMenus.get(dropdown);
-
-  if (!button || !menu) return;
-
-  menu.style.display = 'block';
-  const buttonRect = button.getBoundingClientRect();
-  const menuWidth = menu.getBoundingClientRect().width;
-  const left = Math.max(0, Math.min(buttonRect.left, window.innerWidth - menuWidth));
-
-  menu.style.left = `${left}px`;
-  menu.style.top = `${buttonRect.bottom}px`;
-}
-
-function closeDropdown(dropdown) {
-  if (!dropdown) return;
-
-  const menu = dropdownMenus.get(dropdown);
-  if (menu) menu.style.display = '';
-  if (activeDropdown === dropdown) activeDropdown = undefined;
-}
-
-function openDropdown(dropdown) {
-  clearTimeout(closeTimer);
-
-  if (activeDropdown && activeDropdown !== dropdown) {
-    closeDropdown(activeDropdown);
-  }
-
-  activeDropdown = dropdown;
-  positionDropdown(dropdown);
-}
-
-document.querySelectorAll('.dropdown').forEach((dropdown) => {
-  const menu = dropdown.querySelector('.dropdown-content');
-  const button = dropdown.querySelector('.dropbtn');
-
-  dropdownMenus.set(dropdown, menu);
-  document.body.appendChild(menu);
-
-  dropdown.addEventListener('mouseenter', () => {
-    openDropdown(dropdown);
-  });
-  dropdown.addEventListener('mouseleave', () => {
-    closeTimer = setTimeout(() => closeDropdown(dropdown), 150);
-  });
-  menu.addEventListener('mouseenter', () => {
-    clearTimeout(closeTimer);
-  });
-  menu.addEventListener('mouseleave', () => {
-    closeTimer = setTimeout(() => closeDropdown(dropdown), 150);
-  });
-  button.addEventListener('click', (event) => {
-    event.stopPropagation();
-    if (activeDropdown === dropdown) {
-      closeDropdown(dropdown);
-    } else {
-      openDropdown(dropdown);
-    }
-  });
-});
-
-document.addEventListener('click', () => closeDropdown(activeDropdown));
-
-if (topbarScroll) {
-  topbarScroll.addEventListener('scroll', () => {
-    if (activeDropdown) positionDropdown(activeDropdown);
-  });
-}
-
-window.addEventListener('resize', () => {
-  if (activeDropdown) positionDropdown(activeDropdown);
-});

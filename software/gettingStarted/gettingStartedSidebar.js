@@ -1,17 +1,15 @@
-//this is the sidebar for the software getting started section
-//it is meant to allow the user to move between the different pages of the subcategory
 const softwareGettingStartedSidebarHTML = `
-  
-  
   <!-- Left Sidebar -->
   <aside id="sidebar_left">
-    <h1>Software - Getting Started</h1>
+    <h1>Software</h1>
     <ul>
       <li>
-        <a href="learningJava.html">Learning Java</a>
-      </li>
-      <li>
-        <a href="workspaceSetup.html">Workspace Setup</a> 
+        <button class="sidebar-subcategory" aria-expanded="true" aria-controls="software-getting-started-pages">Getting Started</button>
+        <ul class="sidebar-pages" id="software-getting-started-pages">
+          <li><a href="index.html">Software Overview</a></li>
+          <li><a href="learningJava.html">Learning Java</a></li>
+          <li><a href="workspaceSetup.html">Workspace Setup</a></li>
+        </ul>
       </li>
     </ul>
   </aside>
@@ -19,3 +17,15 @@ const softwareGettingStartedSidebarHTML = `
 
 
 document.body.insertAdjacentHTML('afterbegin', softwareGettingStartedSidebarHTML);
+
+document.querySelectorAll('.sidebar-subcategory').forEach((button) => {
+  const pages = document.getElementById(button.getAttribute('aria-controls'));
+
+  if (!pages) return;
+
+  button.addEventListener('click', () => {
+    const isExpanded = button.getAttribute('aria-expanded') === 'true';
+    button.setAttribute('aria-expanded', String(!isExpanded));
+    pages.hidden = isExpanded;
+  });
+});
