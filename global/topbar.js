@@ -8,35 +8,11 @@ const topbarHTML = `
     <a href="https://team1100.org/">
       <img src="../../global/media/1100Logo.png" alt="Team 1100 Logo">
     </a>
-    <div class="dropdown-row">
-
-    <!-- Home -->
-    <div class="dropdown">
-      <button class="dropbtn">Home</button>
-      <div class="dropdown-content">
-        <a href="../../home/thisWebsite/index.html">What is this Website?</a>
-        <a href="#">How to maintain this website (no page)</a>
-      </div>
-    </div>
-
-    <!-- Software -->
-    <div class="dropdown">
-      <button class="dropbtn">Software</button>
-      <div class="dropdown-content">
-        <a href="../../software/gettingStarted/index.html">Getting Started</a>
-      </div>
-    </div>
-
-    <!-- Mechanical -->
-    <div class="dropdown">
-      <button class="dropbtn">Mechanical</button>
-      <div class="dropdown-content">
-        <a href="../../mechanical/cad/index.html">CAD</a>
-        <a href="#">brad (doesnt exist)</a>
-      </div>
-    </div>
-
-    </div>
+    <nav class="category-row" aria-label="Categories">
+      <a class="topbar-link" href="../../home/thisWebsite/index.html">Home</a>
+      <a class="topbar-link" href="../../software/gettingStarted/index.html">Software</a>
+      <a class="topbar-link" href="../../mechanical/cad/index.html">Mechanical</a>
+    </nav>
 
   </div>
 </div>
@@ -56,37 +32,3 @@ if (toggleButton) {
   });
 }
 
-const topbarScroll = document.getElementById('topbar-scroll');
-let activeDropdown;
-
-function positionDropdown(dropdown) {
-  const button = dropdown.querySelector('.dropbtn');
-  const menu = dropdown.querySelector('.dropdown-content');
-
-  if (!button || !menu) return;
-
-  menu.style.display = 'block';
-  const buttonRect = button.getBoundingClientRect();
-  const menuWidth = menu.getBoundingClientRect().width;
-  const left = Math.max(0, Math.min(buttonRect.left, window.innerWidth - menuWidth));
-
-  menu.style.left = `${left}px`;
-  menu.style.top = `${buttonRect.bottom}px`;
-}
-
-document.querySelectorAll('.dropdown').forEach((dropdown) => {
-  dropdown.addEventListener('mouseenter', () => {
-    activeDropdown = dropdown;
-    positionDropdown(dropdown);
-  });
-  dropdown.addEventListener('mouseleave', () => {
-    dropdown.querySelector('.dropdown-content').style.display = '';
-    if (activeDropdown === dropdown) activeDropdown = undefined;
-  });
-});
-
-if (topbarScroll) {
-  topbarScroll.addEventListener('scroll', () => {
-    if (activeDropdown) positionDropdown(activeDropdown);
-  });
-}
