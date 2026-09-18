@@ -8,7 +8,7 @@ const topbarHTML = `
     <a href="https://team1100.org/">
       <img src="../../global/media/1100Logo.png" alt="Team 1100 Logo">
     </a>
-    <nav class="dropdown-row" aria-label="Categories">
+    <nav class="category-row" aria-label="Categories">
       <a class="topbar-link" href="../../home/thisWebsite/index.html">Home</a>
       <a class="topbar-link" href="../../software/gettingStarted/index.html">Software</a>
       <a class="topbar-link" href="../../mechanical/cad/index.html">Mechanical</a>

@@ -6,7 +6,7 @@ const softwareGettingStartedSidebarHTML = `
       <li>
         <button class="sidebar-subcategory" aria-expanded="true" aria-controls="software-getting-started-pages">Getting Started</button>
         <ul class="sidebar-pages" id="software-getting-started-pages">
-          <li><a href="index.html">Software Overview</a></li>
+          <li><a href="index.html">What is Software?</a></li>
           <li><a href="learningJava.html">Learning Java</a></li>
           <li><a href="workspaceSetup.html">Workspace Setup</a></li>
         </ul>
